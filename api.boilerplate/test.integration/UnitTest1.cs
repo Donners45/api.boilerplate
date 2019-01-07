@@ -9,27 +9,25 @@ namespace test.integration
 {
     public class UnitTest1 : IClassFixture<TestFixture<api.Startup>>
     {
-        public UnitTest1(TestFixture<api.Startup> fixture)
+        public UnitTest1()
         {
-            Client = fixture.Client;
+            Client = new TestFixture<api.Startup>().Client; //fixture.Client;
         }
 
         public HttpClient Client { get; }
 
         [Fact]
-        public async Task Test1()
+        public async Task GET_ValuesRoute_ReturnsOK()
         {
-            var request = new HttpRequestMessage(new HttpMethod("GET"), "/");
+            var request = new HttpRequestMessage(new HttpMethod("GET"), "api/values");
 
             // Act
             var response = await Client.SendAsync(request);
 
             // Assert
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
             var content = await response.Content.ReadAsStringAsync();
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
-            Assert.Equal("Test response", content);
-            Assert.False(response.Headers.Contains("Server"), "Should not contain server header");
         }
     }
 }
