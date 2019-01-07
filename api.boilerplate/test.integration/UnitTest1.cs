@@ -9,9 +9,9 @@ namespace test.integration
 {
     public class UnitTest1 : IClassFixture<TestFixture<api.Startup>>
     {
-        public UnitTest1()
+        public UnitTest1(TestFixture<api.Startup> fixture)
         {
-            Client = new TestFixture<api.Startup>().Client; //fixture.Client;
+            Client = fixture.Client;
         }
 
         public HttpClient Client { get; }
