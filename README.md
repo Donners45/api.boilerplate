@@ -1,6 +1,8 @@
 # api.boilerplate
 Lightweight .NET Core WebAPI boilerplate. Contains three projects, API, unit tests and integration tests.
 
+Fork this repository then rename root folder and solution.
+
 # API
 ASP.NET Core WebAPI 2.1 project.
 
